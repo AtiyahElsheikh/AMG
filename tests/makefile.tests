@@ -1,0 +1,15 @@
+help:
+	@echo "Targets are:"
+	@echo "	- new:      generate new gateway functions"
+	@echo "	- standard: generate standard gateway functions"
+	@echo "	- compare:  compare the new with the standard"
+
+PLATFORM=${OSNAME}${R_ADDRW}
+new:${AMG_HOME}/bin/${PLATFORM}/mexgen
+	run.ksh new
+
+standard:${AMG_HOME}/bin/${PLATFORM}/mexgen
+	run.ksh standard
+
+compare:
+	run.ksh compare

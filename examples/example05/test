@@ -1,0 +1,14 @@
+%* transpose of a matrix 
+   testing explicit size setting 
+ *% 
+
+B = slow_transpose(A) 
+-size(@1)={ncols(A),nrows(A)}
+--info_param
+-kernel { 
+ 
+	for(int i=0;i<nrows($1);i++)
+	   for(int j=0;j<ncols($1);j++)
+	      @1[i+nrows($1)*j] = $1[j+ncols($1)*i];
+
+}

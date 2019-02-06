@@ -1,0 +1,25 @@
+
+/**
+ * Macros to handle derivative objects of Type DERIV_TYPE:
+ *
+ * 	deriv(X,Y) : set a DERIV_TYPE objects whose values are X
+ *                   and gradients are Y 
+ *                   DERIV_val(deriv(X,Y)) = X
+ * 		     DERIV_grad(deriv(X,Y)) = Y 
+ *	grad(X)    : refers to the corresponding DERIV_TYPE object
+ *                   of the parameter X. 	
+ *                   if X is an active variable then
+ *                   grad(X) = deriv(X,Y) 
+ * 
+ * Some useful routines when dealing with adic:
+ * 	DERIV_TYPE* set_deriv_type(MatObj x, MatObj g_x): 
+ *         set the values and the derivative of a matrix objects.
+ *      get_val(DERIV_TYPE* x,int nx, double *val): 
+ *	   get the values of an array of DERIV_TYPE into an array 
+ *         of double 
+ *      get_grad(DERIV_TYPE* x,int nx, int ngrad, double *grad)
+ *         get the gradients of an array of DERIV_TYPE and store 
+ *	   them into an array (ADiMAT format)   
+ *             
+ **/
+

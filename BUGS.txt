@@ -1,0 +1,9 @@
+This file contains BUGS founded by testing, and not removed yet
+from the current version. 
+
+22/7/2005
+=========
+  - the bracket '{' after -kernel should be in the same line
+    it doesn't work if it comes in a new line
+
+ 

@@ -1,0 +1,42 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+=====>   output list         =====>   [ 
+=====>   an ID               =====>   a
+=====>   another ID coming   =====>   , 
+=====>   an output rank      =====>   a rank              =====>   2
+=====>   output list end     =====>   ] 
+=====>   =                   =====>   an ID               =====>   foo_08
+=====>   argument list       =====>   ( 
+=====>   an ID               =====>   a
+=====>   another ID coming   =====>   , 
+=====>   an input  rank      =====>   a rank              =====>   2
+=====>   argument list end   =====>   ) 
+=====>   bye
+the inputs are:
+$1:
+	 name: a
+	 rank: 1
+	 explicit type: double
+$2:
+	 name: arg_2
+	 rank: 2
+	 explicit type: double
+
+the outputs are:
+@1:
+	 name: out_1
+	 rank: 1
+	 size: a
+	 type: a
+	 explicit type: double
+@2:
+	 name: out_2
+	 rank: 2
+	 explicit size: 
+		1  1  
+	 explicit type: double
+
+generate foo_08.c

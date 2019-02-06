@@ -1,0 +1,15 @@
+void  mexFunction(int nlhs, mxArray *plhs[],
+                  int nrhs, const mxArray *prhs[]) {
+
+	MatObj** arg;
+	void** out;
+
+	arg = (MatObj **) mxMalloc( sizeof(MatObj *) * nrhs) ;
+
+	for(int i=0;i < nrhs;i++)
+		arg[i] = (MatObj *) mxMalloc( sizeof(MatObj) );
+
+	for(int i=0;i<nrhs;i++)
+		extract_all(prhs[i],arg[i]);
+
+  

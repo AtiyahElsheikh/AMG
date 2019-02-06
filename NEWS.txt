@@ -1,0 +1,121 @@
+Here, only issues that are not listed in the manual in the "doc"
+directory are listed.
+
+=================
+=Version 0.0.4  =
+=================
+* -explicit implemented
+* initial code documentation with doxygen /src/docs 
+
+=================
+=Version 0.0.3.2=
+=================
+* initial block implemented
+* mymex->amg
+* no need for *tmp
+* amg script with more options -h,-o,-a
+
+=================
+=Version 0.0.3.1=
+=================
+* some changes in /config/makefile concerning ADD_*FLAGS
+
+===============
+=Version 0.0.3=
+===============
+
+* more targets for the main makefile : version, cleanall
+* A derivative object g_x comes before x in the parameter list
+* BUG Removed: '*' can be used inside the comments
+* makefile for testing in /tests targets for makefile, new, standard, compare
+
+***********************************************************
+
+===============
+=Version 0.0.2=
+===============
+* major changes to the design is applied
+* version and cleanall target are added to the software
+* -adic(2) -> -adic
+  The user doesn't need to specify the number of independent variables
+  num_independents = numel(g_x) / numel(x) ;
+
+
+***********************************************************
+
+===============
+=Version 0.0.1=
+===============
+
+13/6/2005
+========= 
+* Comment feature added
+  Test files can be commented with %* .. *% 
+
+* -kernel update:
+  size and number of elements of a parameter inside the kernel
+  part can be referred with the macro "size" and "numel" like MATLAB.
+  "dims" and "nelem" have been removed.
+
+14/6/2005
+=========
+* -kernel Update : 
+  the data of an input parameter can be referred with its name 
+  so no need to use data($1). Just $1 is enough.
+
+29/6/2005 3 AM. 
+============== 
+  Support for cell arrays added, see the manual.
+
+29/6/2005 3 PM.
+==============
+  -identical macro has been added.
+  -identical(x)=y means that the size and the type of x 
+     is equal to/ should be equal to y. 
+
+29/6/2005 11 PM.
+==============
+  -type macro has been added.
+  -type(x)=y means that the type of x 
+     is equal to/ should be equal to y. 
+
+8/7/2005 1 PM.
+=============
+  - Makefile changed to support extra kernel files
+  - Example three added under/example to show how to compile with extra 
+    routine.
+
+9/7/2005 3 AM.
+=============
+  - 2 versions Limux & Sun
+  - makefile.linux for mex-files.
+
+10/7/2005 5 PM
+==============
+  - another version for linux 32 bits.
+  - only one makefile for all platforms that uses different 
+    mexscripts mexopt.*.sh for differnet versions.
+
+18/7/2005 7 PM
+==============
+  - support for adic added
+  - significant changes to types attributes of parameters.
+
+21/7/2005 12PM
+==============
+  - complete support for int and float and long any other types like 
+    logical and char can be enhanced easly.
+  - "--all_double" feature is added: 
+    this can be used when all parameters are of type double 
+
+22/7/2005 12PM
+==============
+  - explicit size setting feature added:
+    -size(@1)={nrows(A),ncols(B)}
+    -size(x)={2,3,4}
+
+1st Augst
+=========
+  - gateway routines can be explicitly parallelized on opteron linux
+    using mexopts.opteron-omp.sh under /config.
+

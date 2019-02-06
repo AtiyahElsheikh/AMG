@@ -1,0 +1,11 @@
+%* multliply an input variable with 2 *% 
+
+@1 = times2($1) -size(@1)=$1 -explicit(@1)
+-kernel { 
+	int i;
+#ifdef _OPENMP
+#pragma omp parallel for private(i) shared(out,arg)
+#endif
+	for(i=0;i<numel($1);i++)
+		@1[i] = $1[i]*2;
+}

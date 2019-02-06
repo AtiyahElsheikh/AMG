@@ -1,0 +1,106 @@
+# Describtion :
+#       Makefile to compile mex files 
+# Author      : Attiya ElSheikh  
+#
+# made        : 16 Sep. 2004
+# last changes: 29.10.2004
+#-----------------------------------------------------------------------------------
+
+ISA      = -xarch=v8plusb 
+CHIP     = -xchip=ultra4 
+CACHE    = -xcache=64/32/4:8192/128/2 
+TARGET   = $(ISA) $(CHIP) $(CACHE) 
+
+OMP	 = -xopenmp
+AUTO	 = -xautopar -xreduction
+FAST	 = -fast -DNDEBUG
+
+MATLAB   = /rwthfs/rz/SW/MATLAB/matlab_r14
+INC	 = -I$(MATLAB)/extern/include -I$(MATLAB)/simulink/include
+AMG_INC  = -I$(AMG_HOME)/include
+
+ADD_CFLAGS = 
+ADD_LFLAGS = 
+
+CFLAGS	   = -g $(FAST) $(TARGET) $(ADD_CFLAGS)
+
+LDFLAGS	 =  -L/rwthfs/rz/SW/MATLAB/matlab_r14/bin/sol2 -lmx -lmex -lmat -lm -lc $(ADD_LFLAGS)
+LDOMP	 =  -lmtsk
+
+NUM_THREADS = 1
+EXECUTE =  matlab -nodisplay -nojvm -nodesktop -nosplash -r 
+DEBUG	 = -g
+
+CC	 = cc
+FC	 = f90
+LD	 = cc
+
+KERNEL   =
+MOD = 
+EXE1	 = $(MOD).mexsol
+EXE2	 = $(MOD)_par.mexsol
+EXE3	 = $(MOD)_omp.mexsol
+
+OBJECTS = $(MOD).o $(KERNEL)
+OBJECTS_PAR = $(MOD)_par.o  
+OBJECTS_OMP = $(MOD)_omp.o 
+
+help	:
+	@echo ""
+	@echo "Target are : "
+	@echo "	build [MOD=*] [KERNEL=*] : build serial *.mexsol"
+	@echo "		MOD:    The name of the mex file"
+	@echo "		KERNEL: extra kernel file like kernel.o "
+	@echo "	par:" 
+	@echo "	    -build_par: automatic parallelization"
+	@echo "	    -build_omp : explicit parall. with openmp"
+	@echo "	run:"
+	@echo "	    -run the testing matlab code
+	@echo "	run_par"
+	@echo "	    - run the testing matlab code in par."
+	@echo "	clean"
+	@echo ""
+	@echo "FLAGS :"
+	@echo "	ADD_CFLAGS : extra C flags"
+	@echo "	ADD_LFLAGS : extra linkage flags" 
+	@echo "	NUM_THREADS = "
+
+build : $(EXE1)
+par    :
+	gmake build_par
+	gmake build_omp
+
+build_par : $(EXE2)
+build_omp:  $(EXE3) 
+
+run: 	
+	LAPACK_VERBOSITY=1  BLAS_VERSION=libsunperf.so.4 $(EXECUTE) test_$(MOD)
+
+run_par	: 
+	LAPACK_VERBOSITY=1 BLAS_VERSION=libsunperf.so.4 OMP_NUM_THREADS=$(NUM_THREADS) $(EXECUTE) test_$(MOD)_par 
+
+$(EXE1)	: $(OBJECTS)
+	mex COPTIMFLAGS='$(CFLAGS) ' $(OBJECTS) -o $(EXE1) -v
+
+$(EXE2) : $(OBJECTS_PAR)
+	mex COPTIMFLAGS='$(CFLAGS) ' LDOPTIMFLAGS=$(LDOMP) $(OBJECTS_PAR) -o $(EXE2) -v 
+
+$(EXE3) : $(OBJECTS_OMP)
+	mex COPTIMFLAGS='$(OMP) $(CFLAGS) ' LDOPTIMFLAGS=$(LDOMP) $(OBJECTS_OMP) -o $(EXE3) -v	
+
+$(MOD).o: $(MOD).c 
+	mex -c COPTIMFLAGS='$(CFLAGS) ' $(AMG_INC) $(MOD).c -v
+
+$(MOD)_par.o: $(MOD).c 
+	mex -c COPTIMFLAGS='$(AUTO) $(CFLAGS) -xrestrict '  $(AMG_INC) $(MOD).c -v
+	mv $(MOD).o $(MOD)_par.o
+
+$(MOD)_omp.o: $(MOD).c 
+	mex -c COPTIMFLAGS='$(OMP) $(CFLAGS) -xrestrict ' $(AMG_INC) $(MOD).c -v
+	mv $(MOD).o $(MOD)_omp.o	
+
+clean_obj:
+	rm -f *.o
+clean:
+	rm -f *.out *.o  *.mexsol core
+

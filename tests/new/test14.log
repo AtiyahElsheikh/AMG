@@ -1,0 +1,40 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   =                   =====>   an ID               =====>   foo_14
+=====>   argument list       =====>   ( 
+=====>   an input  rank      =====>   a rank              =====>   1
+=====>   argument list end   =====>   ) 
+=====>   setting size&type      =====>   argument list       =====>   ( 
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   argument list end   =====>   ) 
+=====>   =                   =====>   an input  rank      =====>   a rank              =====>   1
+=====>   setting kernel -kernel
+kernel : 
+
+
+	double *x = arg_1;
+	double *y = out_1;
+
+	dosomthing(x,size(arg_1),y);
+
+
+=====>   bye
+the inputs are:
+$1:
+	 name: arg_1
+	 rank: 1
+	 explicit type: double
+
+the outputs are:
+@1:
+	 name: out_1
+	 rank: 1
+	 size: arg_1
+	 type: arg_1
+	 explicit type: double
+
+generate foo_14.c

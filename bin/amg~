@@ -1,0 +1,19 @@
+#!/bin/bash
+PLATFORM=$OSNAME$R_ADDRW
+MSG="-h, -?, --help : Print this help message\n--add-missing : Copy makefiles to the current directory"
+
+if [[ "$1" = "--help" || "$1" = "-?" || "$1" = "-h" ]] ; then
+  echo $MSG
+  exit 0
+fi
+
+if [[ "$2" = "--add_missing" ]]; then
+    cp $AMG_HOME/config/makefile .
+    cp $AMG_HOME/config/makefile.adic .
+fi
+# cp $AMG_HOME/config/*tmp . No longer needed, the files are embedded into mexgen
+
+valgrind --tool=memcheck $AMG_HOME/bin/$PLATFORM/mexgen < $1 
+
+# && ( rm -f copyright.tmp doc-ad.tmp doc.tmp  input.tmp  output.tmp ; exit 0)
+

@@ -1,0 +1,4 @@
+#!/bin/ksh
+
+export AMG_HOME=${AMG_HOME:-$PWD}
+export PATH=$PATH:$AMG_HOME/bin

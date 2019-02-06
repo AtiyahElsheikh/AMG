@@ -1,0 +1,6 @@
+%* multliply an input variable with 2 *% 
+
+@1 = times2($1) -size(@1)=$1
+-kernel { 
+	kernel($1,numel($1),@1);
+}

@@ -1,0 +1,14 @@
+%* 
+   transpose of a matrix 
+   calling a fortran routine in the kernel
+*% 
+
+B = fast_transpose(A) 
+-size(@1)={ncols(A),nrows(A)}
+--info_param
+--all_double
+-kernel { 
+	
+	transpose_(A,&nrows(A),&ncols(A),B);
+
+}

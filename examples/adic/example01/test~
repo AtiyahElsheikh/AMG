@@ -1,0 +1,17 @@
+%* multiply c with x and return y *% 
+
+[g_y,y] = g_times(g_c,c,g_x,x)
+%* this means there are 2 independent variables *%
+-adic 
+%* this means that y and c and x are active variables *%
+-active(y,c,x)
+%* print the parser data about input and output parameters, see test.log *%
+--info_param
+%* display the data from the generated gateway  *%
+--display_input
+
+%* no size macro => all outputs are scalar *%
+
+-kernel { 
+	ad_simple(grad(y),*grad(c),*grad(x));
+}

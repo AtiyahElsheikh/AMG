@@ -1,0 +1,19 @@
+%* multiply c with x and return y *% 
+
+[g_y,y] = g_times(g_c,c,g_x,x)
+
+%* switching adic on *%
+-adic 
+
+%* this means that y and c and x are active variables *%
+-active(y,c,x)
+
+%* print information about input and output parameters, see test.log *%
+--info_param
+
+%* the length of the output variable y is equal to the length of x*%
+-size(y)=x
+
+-kernel { 
+	ad_simple(grad(y),*grad(c),grad(x),numel(x));
+}

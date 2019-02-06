@@ -1,0 +1,97 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+
+
+=====>   output list         =====>   [ 
+=====>   an ID               =====>   g_y
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   y
+=====>   output list end     =====>   ] 
+=====>   =                   =====>   an ID               =====>   g_times
+=====>   argument list       =====>   ( 
+=====>   an ID               =====>   g_c
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   c
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   g_x
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   x
+=====>   argument list end   =====>   ) 
+
+
+=====>   aidc on       -adic
+
+
+=====>   aidc on       -active
+=====>   argument list       =====>   ( 
+=====>   an ID               =====>   y
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   c
+=====>   another ID coming   =====>   , 
+=====>   an ID               =====>   x
+=====>   argument list end   =====>   ) 
+
+
+
+
+
+
+=====>   setting kernel -kernel
+kernel : 
+ 
+	ad_simple(grad(y),*grad(c),*grad(x));
+
+
+=====>   bye
+the inputs are:
+$1:
+	 name: g_c
+	 rank: 1
+	 explicit size: 
+		numel(c) * amg_num_independents  1  
+	 explicit type: double
+	 isactive: 0
+	 isderiv : 1
+$2:
+	 name: c
+	 rank: 2
+	 explicit type: double
+	 isactive: 1
+	 isderiv : 0
+$3:
+	 name: g_x
+	 rank: 3
+	 explicit size: 
+		numel(x) * amg_num_independents  1  
+	 explicit type: double
+	 isactive: 0
+	 isderiv : 1
+$4:
+	 name: x
+	 rank: 4
+	 explicit type: double
+	 isactive: 1
+	 isderiv : 0
+
+the outputs are:
+@1:
+	 name: g_y
+	 rank: 1
+	 explicit size: 
+		1 * 1 * amg_num_independents  1  
+	 explicit type: double
+	 isactive: 0
+	 isderiv : 1
+@2:
+	 name: y
+	 rank: 2
+	 explicit size: 
+		1  1  
+	 explicit type: double
+	 isactive: 1
+	 isderiv : 0
+
+generate g_times.c

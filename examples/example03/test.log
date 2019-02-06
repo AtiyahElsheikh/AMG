@@ -1,0 +1,38 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+
+
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   =                   =====>   an ID               =====>   times2
+=====>   argument list       =====>   ( 
+=====>   an input  rank      =====>   a rank              =====>   1
+=====>   argument list end   =====>   ) 
+=====>   setting size      =====>   argument list       =====>   ( 
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   argument list end   =====>   ) 
+=====>   =                   =====>   an input  rank      =====>   a rank              =====>   1
+
+=====>   setting kernel -kernel
+kernel : 
+ 
+	kernel(arg_1,numel(arg_1),out_1);
+
+
+=====>   bye
+the inputs are:
+$1:
+	 name: arg_1
+	 rank: 1
+	 explicit type: double
+
+the outputs are:
+@1:
+	 name: out_1
+	 rank: 1
+	 size: arg_1
+	 explicit type: double
+
+generate times2.c

@@ -1,0 +1,26 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+=====>   an ID               =====>   a
+=====>   =                   =====>   an ID               =====>   foo_07
+=====>   argument list       =====>   ( 
+=====>   an ID               =====>   a
+=====>   argument list end   =====>   ) 
+=====>   bye
+the inputs are:
+$1:
+	 name: a
+	 rank: 1
+	 explicit type: double
+
+the outputs are:
+@1:
+	 name: out_1
+	 rank: 1
+	 size: a
+	 type: a
+	 explicit type: double
+
+generate foo_07.c

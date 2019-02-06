@@ -1,0 +1,37 @@
+#!/bin/ksh
+PLATFORM=$OSNAME$R_ADDRW
+USAGE="amg [options] inputfile\n[options] can be:\n"
+MSG="
+-h, -?, --help:\n\t print this help messege\n-a, --add-missing:\n\t Copy makefiles to the current directory\n-o, --out_dir:\n\t The mexfunction destination\n
+\tNOTE: -o should come first before -a\n
+    "
+OUTDIR=.
+
+while [[ $1 = -* ]]; do
+    case $1 in
+	--help | -h | "-?" )
+	       echo $USAGE
+               echo $MSG 
+	       exit ;;
+	--add_missing | -a )
+	       cp $AMG_HOME/config/makefile $OUTDIR
+	       cp $AMG_HOME/config/makefile.adic $OUTDIR ;;
+	--out_directory | -o )
+	       OUTDIR=${2:?"missing destination directory"} 
+	       echo Mexfunction will be generated in $OUTDIR
+	       shift ;;
+	* ) 
+	       echo Unrecognaized option: try --help for more information
+	       exit ;;
+    esac
+    shift
+done
+
+if [[ "$OUTDIR" != "." ]]; then
+    cp ${1:?"missing input file for AMG"} $OUTDIR 
+    cd $OUTDIR 
+fi 
+$AMG_HOME/bin/$PLATFORM/mexgen < $1 > $1.log
+
+#valgrind --tool=memcheck $AMG_HOME/bin/$PLATFORM/mexgen < $1 
+

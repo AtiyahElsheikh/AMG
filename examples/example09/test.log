@@ -1,0 +1,56 @@
+
+
+	parsing a matlab function prototype
+	===================================
+
+=====>   output list         =====>   [ 
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   output list end     =====>   ] 
+=====>   =                   =====>   an ID               =====>   explicit
+=====>   argument list       =====>   ( 
+=====>   an input  rank      =====>   a rank              =====>   1
+=====>   another ID coming   =====>   , 
+=====>   an input  rank      =====>   a rank              =====>   2
+=====>   argument list end   =====>   ) 
+=====>   setting explicit      =====>   argument list       =====>   ( 
+=====>   an output rank      =====>   a rank              =====>   1
+=====>   argument list end   =====>   ) 
+=====>   setting kernel -kernel
+kernel : 
+
+	int i;
+	if( numel(arg_1) > numel(arg_2)) {
+		nrows(out_1) = nrows(arg_1);
+		ncols(out_1) = ncols(arg_1);
+		out_1 = (double *) mxMalloc(numel(arg_1) * sizeof(double));	
+		for(i=0;i<numel(arg_1);i++)
+			out_1[i] = arg_1[i];
+        }
+	else {
+		nrows(out_1) = nrows(arg_2);
+		ncols(out_1) = ncols(arg_2);
+		out_1 = (double *) mxMalloc(numel(arg_2) * sizeof(double));	
+		for(i=0;i<numel(arg_2);i++)
+			out_1[i] = arg_2[i];
+        }
+
+=====>   bye
+the inputs are:
+$1:
+	 name: arg_1
+	 rank: 1
+	 explicit type: double
+$2:
+	 name: arg_2
+	 rank: 2
+	 explicit type: double
+
+the outputs are:
+@1:
+	 name: out_1
+	 rank: 1
+	 explicit size: 
+		1  1  
+	 explicit type: double
+	 data field memory should be explicitly allocated
+generate explicit.c
