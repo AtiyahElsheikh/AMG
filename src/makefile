@@ -1,15 +1,14 @@
-
-#FLEX_HOME=/home/af116el/bin
-FLEX=${HOME}/bin/flex
-
 CC= gcc
 CFLAGS= -g
 LDFLAGS= -g
 LDLIBS=
 LLEXFLAGS=
 
+UNAMEOUT="$(shell uname -s)"
 PLATFORM=$(OSNAME)$(R_ADDRW)
-EXE=mexgen
+PLATFORM=$(UNAMEOUT)
+
+EXE=mexgen.exe
 OBJECTS=$(PLATFORM)/func.tab.o $(PLATFORM)/generator.o $(PLATFORM)/lex.yy.o \
 	$(PLATFORM)/arguments_arr.o $(PLATFORM)/functions.o \
 	$(PLATFORM)/lists.o $(PLATFORM)/doc_tmp.o $(PLATFORM)/doc_ad_tmp.o \
@@ -23,21 +22,27 @@ help:
 	@echo "	- clean:    remove the machine-binaries"
 	@echo ""
 
-build: $(PLATFORM)/$(EXE)
+outdir:${PLATFORM}
+
+${PLATFORM}:
+	mkdir -p $(PLATFORM)
+
+build: outdir $(PLATFORM)/$(EXE)
 	rm -f $(AMG_HOME)/bin/$(PLATFORM)/$(EXE)
+	mkdir -p $(AMG_HOME)/bin/$(PLATFORM)
 	ln -f $(AMG_HOME)/src/$(PLATFORM)/$(EXE) $(AMG_HOME)/bin/$(PLATFORM)/$(EXE)
 
-$(PLATFORM)/$(EXE): $(OBJECTS)
+$(PLATFORM)/$(EXE): $(OBJECTS)  
 	$(CC) $(LDFLAGS) $(OBJECTS) $(LDLIBS) -o $(PLATFORM)/$(EXE)
 
-$(OBJECTS):$(PLATFORM)/%.o:%.c
+$(OBJECTS):$(PLATFORM)/%.o:%.c 
 	$(CC) -c $(CFLAGS) $< -o $@
-
+	
 func.tab.c: func.y functions.h
 	bison -d func.y	
 
 lex.yy.c: functions.h func.lex
-	$(FLEX) func.lex
+	flex func.lex
 
 arguments_arr.c: arguments_list.h
 
