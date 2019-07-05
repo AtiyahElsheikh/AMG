@@ -1,5 +1,9 @@
-#!/bin/ksh
+#!/bin/sh
+
+UNAMEOUT="$(uname -s)"
 PLATFORM=$OSNAME$R_ADDRW
+PLATFORM=$UNAMEOUT
+
 USAGE="amg [options] inputfile\n[options] can be:\n"
 MSG="
 -h, -?, --help:\n\t print this help messege\n-a, --add-missing:\n\t Copy makefiles to the current directory\n-o, --out_dir:\n\t The mexfunction destination\n
@@ -31,6 +35,9 @@ if [[ "$OUTDIR" != "." ]]; then
     cp ${1:?"missing input file for AMG"} $OUTDIR 
     cd $OUTDIR 
 fi 
+
+echo $1
+echo $PLATFORM 
 $AMG_HOME/bin/$PLATFORM/mexgen < $1 > $1.log
 
 #valgrind --tool=memcheck $AMG_HOME/bin/$PLATFORM/mexgen < $1 
