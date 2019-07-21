@@ -1,45 +1,51 @@
 Summary
 =======
-* more tests ( -type, --*,adic) 
+
+testing 
+=======
+	- Unit testing 
+	- Automated testing 
+
+clean generated code
+=======================
+	- no need for #define arg_1_ptr  arg[0]
+	- blocks and comments 
+	- what does out do? 
+
+Useful features: 
+================
+	* all amg local variables should be prefixed with amg_
+	* all input files to end with .amg
+	* doxygen?
+
+to implement:
+=============
+	* type(@1) = int? 
+
+* enhance mymex.h with the following macros / exception handling 
+=================================================================
+	
+	- more macros: -matrix($...), -vector, -scalar, -square
+	- Error msgs should be in matlab style
+  	- shape : ismorethan2D(), ismatrix,isvector, isscalar,iscell,isempty,
+	          issparse,iscomplex,isreal,isstruct, issquare
+  	- type  : isdouble,issingle,isfloat,integer,islong,isshort,
+	  	  islogical,isboolean,ischar,isnumeric
+
+
 * excute other adic examples
 * update to include 
-* doxygen ?
-* config. files
+
 
 * Configuration files
 ====================
   + --* is added to a boolean list, that defines <*> in config. files
 
-
-* example with adifor
-=====================
-
-
-* enhance mymex.h with the following macros
-===========================================
-  shape : ismorethan2D(), ismatrix,isvector, isscalar,iscell,isempty,
-	  issparse,iscomplex,isreal,isstruct, issquare
-  type  : isdouble,issingle,isfloat,integer,islong,isshort,
-	  islogical,isboolean,ischar,isnumeric
-
-
-* Document mymex.h using the cdocs/doxygen tool.
+* Document mymex.h using the cdocs/doxygen tool
 ===============================================
-
-
-* all amg local variables should be prefixed with amg_
-======================================================
-
 
 * from the amg input file, generate a user support M-file the matlab help
 =========================================================================
-
-
-* Exeption handling macros 
-==========================
-  - more macros: -matrix($...), -vector, -scalar, -square
-  - Error msgs should be in matlab style
-
 
 * -initial and -header blocks
 =============================
@@ -48,21 +54,19 @@ Summary
   - "header" to include extra header files and kernel routine specification
   - they will work like the kernel "block" 
 
-
 * --unlimited_inputs
 ====================
+  - @m = foo($n) instead [@1,@2] = foo($1,$2,$3)  
   - generate a mexfile which accepts any number of inputs 
   - $all & @all can be used to refer to all output and input
     paramaters, a single input parameter can be accessed in 
     this way $all[i]
 
-
 * --no_output_allocation:
 =========================
-  no_output_allocation is needed by the gateway routine if
-  the kernel routine it calls allocate storage for the outputs
-
+    no_output_allocation is needed by the gateway routine if
+    the kernel routine it calls allocate storage for the outputs
 
 * --abriviate
 =============
-  extract only the necessary information whenever needed 
+    extract only the necessary information whenever needed 
