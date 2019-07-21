@@ -1,0 +1,2 @@
+* linguist-vendored
+*.c *.h *.dox *.y *.lex linguist-vendored=false
