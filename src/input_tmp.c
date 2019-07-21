@@ -1,0 +1,17 @@
+const char *input_tmp= {
+"void  mexFunction(int nlhs, mxArray *plhs[],\n"
+"                  int nrhs, const mxArray *prhs[]) {\n"
+"\n"
+"	MatObj** arg;\n"
+"	void** out;\n"
+"\n"
+"	arg = (MatObj **) mxMalloc( sizeof(MatObj *) * nrhs) ;\n"
+"\n"
+"	for(int i=0;i < nrhs;i++)\n"
+"		arg[i] = (MatObj *) mxMalloc( sizeof(MatObj) );\n"
+"\n"
+"	for(int i=0;i<nrhs;i++)\n"
+"		extract_all(prhs[i],arg[i]);\n"
+"\n"
+"  \n"
+"\0"};
