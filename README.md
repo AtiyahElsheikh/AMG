@@ -17,6 +17,9 @@ a- for users
 b- for developer
    - flex at least >= version 2.5.4 ( version 2.5.3x does not work)
    - bison >= version 1.875d (previous versions were not tested yet) 
+   
+## Releases
+  July 2019 : 1.0-Alpha -- Initial version extracted from the software implemented 2005
 
 ## Building
 
