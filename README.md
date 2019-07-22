@@ -21,7 +21,9 @@ b- for developer
 ## Building
 
 To build amg  
+
    $ . amg.init
+   
    $ gmake build
 
 ## Using the software 
