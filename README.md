@@ -28,6 +28,7 @@ To build amg
 
 Every time you want to use software, some necessary environment 
 variables should be defined through
+
 $ . amg.init
  
 
