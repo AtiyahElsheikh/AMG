@@ -3,7 +3,7 @@
 **   AMG , Automatic Mex-file Generator                                          **
 **         ^         ^        ^                                                  **
 **                                                                               **
-**   CopyRight (C) 2005 Atya El-Shekh                                            **
+**   CopyRight (C) 2005 Atiyah Elsheikh  / 2019 Mathemodica.com                  **
 **                                                                               **
 **   This file is part of AMG.                                                   **
 **                                                                               **
