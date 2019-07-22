@@ -1,3 +1,17 @@
+This software has been initially implemented by Atiyah Elsheikh 2005 during his master thesis at RWTH Aachen.
+A private copy of the master thesis and a resulting conference publication can be found at my ResearchGate website. 
+The software is now further maintained by Mathemodica.com (C) 2019 
+
+Version 1.0-alpha
+==================
+* Initial copy with updated documentation
+* Tested with MinGW 
+
+
+Older release notes: 
+====================
+
+
 Here, only issues that are not listed in the manual in the "doc"
 directory are listed.
 

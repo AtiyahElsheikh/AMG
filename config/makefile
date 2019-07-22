@@ -3,8 +3,8 @@
 #       it makes use of mexopts.*.sh under $AMG_HOME/config
 #
 # Tested Platforms :
-#	Linux 32,64 bits and solaris
-# Author      : Attiya ElSheikh  
+#	Linux 32,64 bits and solaris, MinGW 
+# Author      : Atiyah ElSheikh  
 #
 # made        : 10 Jul 2005
 # last changes: 29 Jul 2005

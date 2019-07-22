@@ -19,7 +19,7 @@
 # $Revision: 1.78.4.9 $  $Date: 2004/04/25 21:30:58 $
 #
 #
-# Updated by Atya El-Shekh
+# Updated by Atiyah Elsheikh
 # function
 #               Compile mexfile with the intel compiler (64 bits) to obtain
 #               parallelized MEX-files.

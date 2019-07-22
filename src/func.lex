@@ -2,8 +2,8 @@
 **                                                                               **
 **   AMG , Automatic Mex-file Generator                                          **
 **         ^         ^        ^                                                  **
-**	                                                                         **
-**   CopyRight (C) 2005 Atya El-Shekh                                            **
+**	                                                                             **
+**   CopyRight (C) 2005 Atiyah Elsheikh  / 2019 Mathemodica.com                  **
 **                                                                               **
 **   This file is part of AMG.                                                   **
 **                                                                               **
@@ -30,13 +30,13 @@
 #include "func.tab.h"
 #include "global_properties.h"
 
-  char *reply = "=====>  ";
-  int yywrap(void);
-  int size_on;
-  int equal_on;
-  int nbrackets ; 
-  int count_dim;
-  int lineno;
+  char *reply = "=====>  ";   // reply msg
+  int yywrap(void);           // 
+  int size_on;                //  
+  int equal_on;               //
+  int nbrackets ;             // # of brackets 
+  int count_dim;              // 
+  int lineno;                 // line number 
 
 %}
 
